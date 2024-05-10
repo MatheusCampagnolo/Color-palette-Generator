@@ -9,9 +9,14 @@
 <body>
     <header>
         <h1>Color palette Generator</h1>
-        <p>This is a simple color palette generator. Click the button below to generate a random palette or choose a specific category.</p>
-        <button id="generate-random-btn">generate random palette</button>
-        <hr/>
+        <p>This is a simple color palette generator. The buttons below are able to generate a color palette.</p>
+        <p>Each button has a uniqueness</p>
+    </header>
+
+    <hr><br>
+
+    <!-- start generate by categories  -->
+    <div align="center">
         <button id="generate-by-feature-btn">generate by categories</button>
         <select id="feature-select">
             <option value="">choose a category</option>
@@ -23,10 +28,48 @@
             <option value="pink">Pink Colors</option>
             <option value="green">Green Colors</option>
         </select>
-    </header>
+    </div>
 
     <section id="color-palette">
     </section>
+
+    <p id="colorChangeHint" align="center" hidden>You can change the color of each box by clicking it</p>
+    <!-- end generate by categories  -->
+
+    <hr/><br>
+
+    <!-- start generate monochromatic  -->
+    <div align="center">
+        <button id="generate-monochromatic-btn">Generate Monochromatic Palette</button>
+        <select id="monochromatic-select">
+            <option value="">Choose a Base Color</option>
+            <option value="#808000">Olive</option>
+            <option value="#9966CC">Amethyst</option>
+            <option value="#008000">Green</option>
+            <option value="#FF7F50">Coral</option>
+            <option value="#008080">Teal</option>
+            <option value="#ffc0cb">Pink</option>
+            <option value="#ffa500">Orange</option>
+        </select>
+    </div> 
+    
+    <section id="monochromatic-palette">
+    </section>
+    <!-- end generate monochromatic  -->
+
+    <hr><br>
+    
+    <!-- start generate custom monochromatic  -->
+    <div align="center">
+        <button id="generate-custom-monochromatic-btn">Generate Custom Monochromatic Palette</button>
+        <input type="text" id="custom-color" placeholder="#123456">
+    </div>
+
+    <section id="custom-monochromatic-palette">
+    </section>
+    <!-- end generate custom monochromatic  -->
+
+    <hr><br>
 
     <script src="script.js"></script>
 </body>
