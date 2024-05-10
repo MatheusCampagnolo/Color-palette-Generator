@@ -1,12 +1,7 @@
-// Adds event listener to generate a random palette when the button is clicked
-document.getElementById('generate-random-btn').addEventListener('click', generateRandomPalette);
 // Adds event listener to generate a palette based on a selected feature
 document.getElementById('generate-by-feature-btn').addEventListener('click', generatePaletteByFeature);
-
-// Function to generate a palette with random colors
-function generateRandomPalette() {
-    generatePalette(generateRandomColor);
-}
+// Adds event listener to generate a monochromatic palette based on a selected color
+document.getElementById('generate-monochromatic-btn').addEventListener('click', generateMonochromaticPaletteByBaseColor);
 
 // Function to generate a palette based on a selected feature
 function generatePaletteByFeature() {
@@ -84,13 +79,16 @@ function generatePalette(colorGenerator) {
         copyButton.innerText = color;
         copyButton.addEventListener('click', () => {
             copyToClipboard(color);
-            alert('The hex code has been copied. ' + color);
+            alert('Copied: ' + color);
         });
 
         const colorInfo = document.createElement('div');
         colorInfo.appendChild(colorBox);
         colorInfo.appendChild(copyButton);
         colorPalette.appendChild(colorInfo);
+
+        let pElement = document.getElementById('colorChangeHint');
+        pElement.removeAttribute('hidden');
     }
 }
 
@@ -148,6 +146,92 @@ function generateYellowColor() {
     const blue = Math.floor(Math.random() * 56).toString(16);
     return `#${red}${green}${blue.padStart(2, '0')}`;
 }
+
+// ---------------------------------------------------------------------------------------------------
+
+// Function to generate a monochromatic palette based on a selected color
+function generateMonochromaticPaletteByBaseColor() {
+    const baseColorSelect = document.getElementById('monochromatic-select');
+    const baseColor = baseColorSelect.value;
+    
+    if (!baseColor) {
+        alert('Please, choose a base color to generate the monochromatic palette.');
+        return;
+    }
+    
+    const palette = generateMonochromaticPalette(baseColor);
+    displayPalette(palette, 'monochromatic-palette'); // Uses the displayPalette function with a specific ID
+}
+
+// Function to display a palette in the specified section
+function displayPalette(palette, paletteId) {
+    const colorPaletteSection = document.getElementById(paletteId);
+    colorPaletteSection.innerHTML = ''; // Clears the existing section
+
+    palette.forEach(color => {
+        const colorBox = document.createElement('div');
+        colorBox.classList.add('color-box');
+        colorBox.style.backgroundColor = color;
+
+        // Creates a button to copy the hexadecimal color code
+        const copyButton = document.createElement('button');
+        copyButton.innerText = color;
+        copyButton.addEventListener('click', () => {
+            copyToClipboard(color);
+            alert('Copied: ' + color);
+        });
+
+        // Creates a container for the color box and the copy button
+        const colorInfo = document.createElement('div');
+        colorInfo.appendChild(colorBox);
+        colorInfo.appendChild(copyButton);
+
+        colorPaletteSection.appendChild(colorInfo);
+    });
+}
+
+
+// Function to generate a monochromatic palette
+function generateMonochromaticPalette(baseColorHex) {
+    // Converts the hexadecimal base color to RGB components
+    let red = parseInt(baseColorHex.slice(1, 3), 16);
+    let green = parseInt(baseColorHex.slice(3, 5), 16);
+    let blue = parseInt(baseColorHex.slice(5, 7), 16);
+
+    // Function to ensure RGB values are within the [0, 255] range
+    function clamp(value) {
+        return Math.max(0, Math.min(value, 255));
+    }
+
+    // Generates monochromatic variations
+    let palette = [];
+    for (let i = -2; i <= 2; i++) {
+        // Adjusts brightness for each variation
+        let newRed = clamp(red + i * 20);
+        let newGreen = clamp(green + i * 20);
+        let newBlue = clamp(blue + i * 20);
+        // Converts back to hexadecimal and adds to the palette
+        let color = `#${newRed.toString(16).padStart(2, '0')}${newGreen.toString(16).padStart(2, '0')}${newBlue.toString(16).padStart(2, '0')}`;
+        palette.push(color);
+    }
+
+    return palette;
+}
+
+// ---------------------------------------------------------------------------------------------------
+
+// Adds event listener to generate a custom monochromatic palette when the button is clicked
+document.getElementById('generate-custom-monochromatic-btn').addEventListener('click', function() {
+    const customColorInput = document.getElementById('custom-color');
+    const customColor = customColorInput.value;
+    // Basic validation to check if the color code seems to be a valid hexadecimal
+    if (/^#[0-9A-F]{6}$/i.test(customColor)) {
+        const palette = generateMonochromaticPalette(customColor);
+        displayPalette(palette, 'custom-monochromatic-palette');
+    } else {
+        alert('Please, enter a valid hex color code.');
+    }
+});
 
 // Function to copy text to clipboard
 function copyToClipboard(text) {
