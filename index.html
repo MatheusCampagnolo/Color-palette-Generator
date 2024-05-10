@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Paleta de Cores</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <header>
+        <h1>Color palette Generator</h1>
+        <p>This is a simple color palette generator. Click the button below to generate a random palette or choose a specific category.</p>
+        <button id="generate-random-btn">generate random palette</button>
+        <hr/>
+        <button id="generate-by-feature-btn">generate by categories</button>
+        <select id="feature-select">
+            <option value="">choose a category</option>
+            <option value="random">Random</option>
+            <option value="red">Red Colors</option>
+            <option value="blue">Blue Colors</option>
+            <option value="orange">Orange Colors</option>
+            <option value="yellow">Yellow Colors</option>
+            <option value="pink">Pink Colors</option>
+            <option value="green">Green Colors</option>
+        </select>
+    </header>
+
+    <section id="color-palette">
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
