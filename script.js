@@ -222,11 +222,11 @@ function generateMonochromaticPalette(baseColorHex) {
 
 // Adds event listener to generate a custom monochromatic palette when the button is clicked
 document.getElementById('generate-custom-monochromatic-btn').addEventListener('click', function() {
-    const customColorInput = document.getElementById('custom-color');
-    const customColor = customColorInput.value;
+    const colorPickerInput = document.getElementById('color-picker');
+    const colorPicked = colorPickerInput.value;
     // Basic validation to check if the color code seems to be a valid hexadecimal
-    if (/^#[0-9A-F]{6}$/i.test(customColor)) {
-        const palette = generateMonochromaticPalette(customColor);
+    if (/^#[0-9A-F]{6}$/i.test(colorPicked)) {
+        const palette = generateMonochromaticPalette(colorPicked);
         displayPalette(palette, 'custom-monochromatic-palette');
     } else {
         alert('Please, enter a valid hex color code.');
