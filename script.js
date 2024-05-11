@@ -61,17 +61,23 @@ function generatePalette(colorGenerator) {
         colorBox.classList.add('color-box');
         colorBox.style.backgroundColor = color;
         colorBox.addEventListener('click', () => {
-            const copyButton = colorBox.nextSibling;
             const oldColor = colorBox.style.backgroundColor;
             let newColor = colorGenerator();
             while (paletteColors.has(newColor)) {
                 newColor = colorGenerator();
             }
             colorBox.style.backgroundColor = newColor;
-            // Updates the displayed hex code
-            copyButton.innerText = newColor; 
             paletteColors.delete(oldColor); // Removes the previous color from the set
             paletteColors.add(newColor); // Adds the new color to the set
+        
+            // Update the color to be copied
+            const newCopyButton = colorBox.nextSibling.cloneNode(true);
+            newCopyButton.innerText = newColor; 
+            newCopyButton.addEventListener('click', () => {
+                copyToClipboard(newColor);
+                alert('Copied: ' + newColor);
+            });
+            colorBox.nextSibling.replaceWith(newCopyButton);
         });
 
         // Adds a button to copy the hexadecimal code
