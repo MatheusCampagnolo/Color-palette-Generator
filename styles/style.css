@@ -70,7 +70,7 @@ button:hover {
     cursor: pointer;
 }
 
-input[type="text"], select {
+select {
     background-color: #222;
     color: #fff;
     border: 1px solid #555;
@@ -79,9 +79,27 @@ input[type="text"], select {
     border-radius: 5px; 
 }
 
-input[type="text"]:focus, select:focus {
-    border-color: #888;
+input[type="color"] {
+    border: 1px solid #555; 
+    height: 35px; 
+    width: 35px; 
+    appearance: none;
+    -webkit-appearance: none; 
+    padding: 0; 
+    cursor: pointer; 
+    vertical-align: middle;
+}
+
+input[type="color"]:focus {
     outline: none; 
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
 }
 
 .copy-button {
