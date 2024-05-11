@@ -233,6 +233,48 @@ document.getElementById('generate-custom-monochromatic-btn').addEventListener('c
     }
 });
 
+// ---------------------------------------------------------------------------------------------------
+
+// Adds a custom color palette to the sidebar
+function addPaletteToSidebar(palette, paletteName) {
+    const palettesContainer = document.getElementById('palettes-container');
+    const paletteDiv = document.createElement('div');
+    paletteDiv.classList.add('palette');
+
+    // Add the palette title
+    const paletteTitle = document.createElement('h3');
+    paletteTitle.classList.add('palette-title');
+    paletteTitle.innerText = paletteName;
+    paletteDiv.appendChild(paletteTitle);
+
+    palette.forEach(color => {
+        const colorSample = document.createElement('div');
+        colorSample.classList.add('color-sample');
+        colorSample.style.backgroundColor = color;
+        paletteDiv.appendChild(colorSample);
+
+        const copyButton = document.createElement('button');
+        copyButton.classList.add('copy-hex-btn');
+        copyButton.innerText = color;
+        copyButton.onclick = function() { 
+            copyToClipboard(color);   
+            alert('Copied: ' + color);
+        };
+        colorSample.appendChild(copyButton);
+    });
+
+    palettesContainer.appendChild(paletteDiv);
+}
+
+// Format for adding color palettes to the sidebar
+addPaletteToSidebar(['#FF5733', '#C70039', '#900C3F', '#581845', '#321123'], 'Vibrant');
+addPaletteToSidebar(['#FFC300', '#FF5733', '#C70039', '#900C3F', '#581845'], 'Warm');
+addPaletteToSidebar(['#E0E7FF', '#C7D2FE', '#A5B4FC', '#818CF8', '#6366F1'], 'Serenity');
+addPaletteToSidebar(['#FFEDD5', '#FED7AA', '#FB923C', '#F97316', '#EA580C'], 'Sunset');
+addPaletteToSidebar(['#ECFEFF', '#A5F3FC', '#67E8F9', '#22D3EE', '#06B6D4'], 'Ocean');
+addPaletteToSidebar(['#F0FDF4', '#DCFCE7', '#86EFAC', '#4ADE80', '#22C55E'], 'Nature');
+addPaletteToSidebar(['#FAF5FF', '#F3E8FF', '#E9D5FF', '#D8B4FE', '#C084FC'], 'Fantasy');
+
 // Function to copy text to clipboard
 function copyToClipboard(text) {
     const tempInput = document.createElement('input');

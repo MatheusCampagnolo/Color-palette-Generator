@@ -26,6 +26,62 @@ p {
     color: #cccccc;
 }
 
+#sidebar {
+    width: 350px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #252525; 
+    color: #f8f8f8; 
+    overflow-y: auto;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+}
+
+#sidebar h2, .palette-title {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.palette {
+    margin-bottom: 20px;
+    background-color: #333333;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.color-sample {
+    height: 40px;
+    margin: 5px 0;
+    border-radius: 5px;
+    position: relative;
+}
+
+.copy-hex-btn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background-color: #3a3a3a;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.copy-hex-btn:hover {
+    background-color: #4a4a4a;
+}
+
+.palette-title {
+    text-align: center;
+    color: #ffffff;
+    margin: 10px 0;
+}
+
+
 button {
     padding: 10px 20px;
     font-size: 1em;
