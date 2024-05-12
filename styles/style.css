@@ -26,18 +26,87 @@ p {
     color: #cccccc;
 }
 
-#sidebar {
+/* ---------------------------------------------------------------------------------------------------------- */
+
+.sidebar {
     width: 350px;
     position: fixed;
-    left: 0;
     top: 0;
+    left: -350px;
     height: 100%;
-    background-color: #252525; 
-    color: #f8f8f8; 
+    background-color: #252525;
+    color: #f8f8f8;
     overflow-y: auto;
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    transition: left 0.3s;
+    z-index: 1000;
 }
+
+.toggle-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px; 
+    z-index: 1001;
+    cursor: pointer;
+    background-color: #252525;
+    color: #f8f8f8; 
+    border: none;
+    padding: 5px; 
+    transition: left 0.3s;
+}
+
+#sidebar-controls button {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#view-palette-sidebar,
+#create-palette-sidebar {
+    display: none;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 10px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+
+.palette .color-custom-box input[type='text'] {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background-color: #3a3a3a;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    width: 4em;
+}
+
+.palette .color-custom-box input[type='text']:hover {
+    background-color: #4a4a4a; 
+}
+
+.color-custom-box{
+    height: 50px;
+    margin: 5px 0;
+    border-radius: 5px;
+    position: relative;
+}
+
+/* ------------------------------------------------------------------------- */
 
 #sidebar h2, .palette-title {
     text-align: center;
@@ -81,6 +150,7 @@ p {
     margin: 10px 0;
 }
 
+/* ---------------------------------------------------------------------------------------- */
 
 button {
     padding: 10px 20px;

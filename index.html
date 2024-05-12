@@ -12,16 +12,35 @@
         <p>This is a simple color palette generator. The buttons below are able to generate a color palette.</p>
     </header>
 
-    <hr><br>
+    <!-- start sidebar -->
+    <aside id="main-sidebar" class="sidebar">
+        <!-- Sidebar controls to show/hide the internal sidebars -->
+        <div id="sidebar-controls">
+            <button id="view-palette-btn">Popular color palettes</button>
+            <button id="create-palette-btn">Create your own palette</button>
+        </div>
 
-    <!-- start cool color palettes -->
-    <aside id="sidebar">
-        <h2>Some cool color palettes 😎</h2>
-        <div id="palettes-container">
-            <h3 class="palette-title">Palette Name</h3>
+        <!-- Sidebar to show some cool color palettes -->
+        <div id="view-palette-sidebar">
+            <h2>Some cool color palettes 😎</h2>
+            <div id="palettes-container">
+            </div>
+        </div>
+
+        <!-- Sidebar to the user create palettes -->
+        <div id="create-palette-sidebar" hidden>
+            <h2>Create your own palette</h2>
+            <button id="add-palette-btn">+</button>
+            <br><br>
+            <div id="custom-palettes-container">
+            </div>
         </div>
     </aside>
-    <!-- end cool color palettes -->
+    <!-- end sidebar -->
+
+    <!-- button to toggle the main sidebar -->
+    <button id="toggle-main-sidebar-btn" class="toggle-btn">&#9654;</button>
+
 
     <!-- start generate by categories  -->
     <div align="center">
@@ -76,8 +95,6 @@
     <section id="custom-monochromatic-palette">
     </section>
     <!-- end generate custom monochromatic  -->
-
-    <hr><br>
 
     <script src="script.js"></script>
 </body>
