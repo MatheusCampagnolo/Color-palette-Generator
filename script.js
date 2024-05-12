@@ -56,7 +56,7 @@ function generatePalette(colorGenerator) {
             color = colorGenerator();
         }
         paletteColors.add(color);
-
+        
         const colorBox = document.createElement('div');
         colorBox.classList.add('color-box');
         colorBox.style.backgroundColor = color;
@@ -241,6 +241,71 @@ document.getElementById('generate-custom-monochromatic-btn').addEventListener('c
 
 // ---------------------------------------------------------------------------------------------------
 
+// Function to toggle the visibility of the main sidebar
+document.getElementById('toggle-main-sidebar-btn').addEventListener('click', function() {
+    const mainSidebar = document.getElementById('main-sidebar');
+    const sidebarControls = document.getElementById('sidebar-controls');
+    const isSidebarVisible = mainSidebar.style.left === '0px';
+
+    // Change the position of the main sidebar
+    mainSidebar.style.left = isSidebarVisible ? '-360px' : '0';
+
+    // Change the position of the main content area
+    this.style.left = isSidebarVisible ? '10px' : '350px'; 
+
+    this.innerHTML = isSidebarVisible ? '&#9654;' : '&#9664;'; // Alteration of the arrow icon
+
+    sidebarControls.style.display = isSidebarVisible ? 'none' : 'block';
+});
+
+// Function to toggle the visibility of the sidebar
+document.getElementById('view-palette-btn').addEventListener('click', function() {
+    document.getElementById('view-palette-sidebar').style.display = 'block';
+    document.getElementById('create-palette-sidebar').style.display = 'none';
+});
+
+document.getElementById('create-palette-btn').addEventListener('click', function() {
+    document.getElementById('view-palette-sidebar').style.display = 'none';
+    document.getElementById('create-palette-sidebar').style.display = 'block';
+});
+
+// ---------------------------------------------------------------------------------------------------
+
+// Function to create a custom color palette
+document.getElementById('add-palette-btn').addEventListener('click', function() {
+    const customPalettesContainer = document.getElementById('custom-palettes-container');
+    const paletteNumber = customPalettesContainer.children.length + 1; 
+    const paletteDiv = document.createElement('div');
+    paletteDiv.classList.add('palette');
+
+    // Create the palette title
+    const paletteTitle = document.createElement('h3');
+    paletteTitle.classList.add('palette-title');
+    paletteTitle.innerText = '#' + paletteNumber;
+    paletteTitle.style.textAlign = 'center';
+    paletteDiv.appendChild(paletteTitle);
+
+    // Create the color boxes
+    for (let i = 0; i < 5; i++) {
+        const colorBox = document.createElement('div');
+        colorBox.classList.add('color-custom-box');
+        colorBox.style.backgroundColor = '#000000';
+        paletteDiv.appendChild(colorBox);
+
+        const colorInput = document.createElement('input');
+        colorInput.type = 'text';
+        colorInput.value = '#000000';
+        colorInput.addEventListener('input', function() {
+            colorBox.style.backgroundColor = colorInput.value;
+        });
+        colorBox.appendChild(colorInput);
+    }
+
+    customPalettesContainer.appendChild(paletteDiv);
+});
+
+// ---------------------------------------------------------------------------------------------------
+
 // Adds a custom color palette to the sidebar
 function addPaletteToSidebar(palette, paletteName) {
     const palettesContainer = document.getElementById('palettes-container');
@@ -280,6 +345,8 @@ addPaletteToSidebar(['#FFEDD5', '#FED7AA', '#FB923C', '#F97316', '#EA580C'], 'Su
 addPaletteToSidebar(['#ECFEFF', '#A5F3FC', '#67E8F9', '#22D3EE', '#06B6D4'], 'Ocean');
 addPaletteToSidebar(['#F0FDF4', '#DCFCE7', '#86EFAC', '#4ADE80', '#22C55E'], 'Nature');
 addPaletteToSidebar(['#FAF5FF', '#F3E8FF', '#E9D5FF', '#D8B4FE', '#C084FC'], 'Fantasy');
+
+// ---------------------------------------------------------------------------------------------------
 
 // Function to copy text to clipboard
 function copyToClipboard(text) {
