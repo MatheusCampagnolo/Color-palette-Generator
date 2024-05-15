@@ -345,6 +345,7 @@ addPaletteToSidebar(['#FFEDD5', '#FED7AA', '#FB923C', '#F97316', '#EA580C'], 'Su
 addPaletteToSidebar(['#ECFEFF', '#A5F3FC', '#67E8F9', '#22D3EE', '#06B6D4'], 'Ocean');
 addPaletteToSidebar(['#F0FDF4', '#DCFCE7', '#86EFAC', '#4ADE80', '#22C55E'], 'Nature');
 addPaletteToSidebar(['#FAF5FF', '#F3E8FF', '#E9D5FF', '#D8B4FE', '#C084FC'], 'Fantasy');
+addPaletteToSidebar(['#a69e80', '#e0ba9b', '#e7a97e', '#d28574', '#3b1922'], 'Comfy');
 
 // ---------------------------------------------------------------------------------------------------
 
